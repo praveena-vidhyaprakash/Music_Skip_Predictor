@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Music Skip Prediction</title>
+    <style>
+        body {
+            font-family: Arial;
+            background-color: #f4f4f4;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+        .container {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            width: 400px;
+        }
+        .title-box {
+            background-color: #333;
+            color: white;
+            padding: 10px;
+            text-align: center;
+            border: 2px solid black;
+        }
+        .form-box {
+            margin-top: 20px;
+            border: 2px solid black;
+            padding: 20px;
+            background-color: #f9f9f9;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label, input {
+            width: 100%;
+            padding: 8px;
+        }
+        .predict-btn {
+            background-color: black;
+            color: white;
+            border: none;
+            padding: 10px;
+            width: 100%;
+        }
+        .result-box {
+            margin-top: 20px;
+            background-color: #333;
+            color: white;
+            padding: 10px;
+            text-align: center;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="title-box"><h2>Music Skip Prediction</h2></div>
+        <form method="POST">
+            <div class="form-box">
+                <div class="form-group">
+                    <label>Session Length (min):</label>
+                    <input type="number" step="any" name="session_length" required>
+                </div>
+                <div class="form-group">
+                    <label>Time on Track (sec):</label>
+                    <input type="number" step="any" name="time_on_track" required>
+                </div>
+                <div class="form-group">
+                    <label>Track Duration (sec):</label>
+                    <input type="number" step="any" name="track_duration" required>
+                </div>
+                <div class="form-group">
+                    <label>Energy (0-1):</label>
+                    <input type="number" step="any" name="energy" min="0" max="1" required>
+                </div>
+                <div class="form-group">
+                    <label>Tempo (BPM):</label>
+                    <input type="number" step="any" name="tempo" required>
+                </div>
+                <div class="form-group">
+                    <label>Repeat Count:</label>
+                    <input type="number" name="repeat_count" min="0" required>
+                </div>
+                <button type="submit" class="predict-btn">Predict</button>
+            </div>
+        </form>
+        {% if result %}
+        <div class="result-box">
+            <h3>{{ result }}</h3>
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
